@@ -12,6 +12,8 @@ import AddNewLead from "./components/AddNewLead";
 import DealPage from "./components/DealPage";
 import Deals from "./components/Deals";
 import UserPage from "./components/UserPage";
+import DataPage from "./components/DataPage";
+import RolePage from "./components/RolePage";
 
 class App extends Component {
   render() {
@@ -43,6 +45,12 @@ class App extends Component {
           </Route>
           <Route path="/users">
             <UserPage />
+          </Route>
+          <Route path="/data">
+            <DataPage />
+          </Route>
+          <Route path="/roles">
+            <RolePage />
           </Route>
           <Route path="/logout">
             <Login />

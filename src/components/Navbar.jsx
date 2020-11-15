@@ -1,5 +1,15 @@
 import React, { useState, Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import {
+  FaHome,
+  FaDatabase,
+  FaUser,
+  FaUsers,
+  FaUserCircle,
+  FaPowerOff
+} from "react-icons/fa";
+import { AiFillThunderbolt } from "react-icons/ai";
+import { MdSecurity } from "react-icons/md";
 
 class Navbar extends Component {
   render() {
@@ -12,13 +22,21 @@ class Navbar extends Component {
                 Sharp CRM
               </a>
             </div>
-            <div className="flex justify-end">
-              <a href="#" className="text-white font-bold p-3">
-                Sumateja K
-              </a>
-              <a href="/logout" className="text-white font-bold p-3">
-                Logout
-              </a>
+            <div className="flex justify-end p-3 text-white">
+              <ul className="flex">
+                <li>
+                  <FaUserCircle className="inline-block align-middle" />
+                  <Link to="/users" className=" font-bold p-3">
+                    Sumateja K
+                  </Link>
+                </li>
+                <li>
+                  <FaPowerOff className="inline-block align-middle" />
+                  <Link to="/logout" className="font-bold p-3">
+                    Logout
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </nav>
@@ -27,6 +45,7 @@ class Navbar extends Component {
             <div className="flex justify-left ">
               <ul className="flex">
                 <li className="mr-2 p-2 hover:text-purple-500 border-b-4 border-white hover:border-solid  hover:border-indigo-500">
+                  <FaHome className="inline-block align-baseline" />
                   <Link
                     to="/dashboard"
                     className="text-black text-xl hover:text-purple-500 font-bold p-3"
@@ -35,6 +54,7 @@ class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="mr-2 p-2 hover:text-purple-500 border-b-4 border-white hover:border-solid  hover:border-indigo-500">
+                  <FaUsers className="inline-block align-baseline" />
                   <Link
                     to="/leads"
                     className="text-black text-xl hover:text-purple-500 font-bold p-3"
@@ -43,6 +63,7 @@ class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="mr-2 p-2 hover:text-purple-500 border-b-4 border-white hover:border-solid  hover:border-indigo-500">
+                  <AiFillThunderbolt className="inline-block align-baseline" />
                   <Link
                     to="/deals"
                     className="text-black text-xl hover:text-purple-500 font-bold p-3"
@@ -51,14 +72,16 @@ class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="mr-2 p-2 hover:text-purple-500 border-b-4 border-white hover:border-solid  hover:border-indigo-500">
+                  <FaDatabase className="inline-block align-baseline" />
                   <Link
-                    to="/leads"
+                    to="/data"
                     className="text-black text-xl hover:text-purple-500 font-bold p-3"
                   >
                     Sample Data
                   </Link>
                 </li>
                 <li className="mr-2 p-2 hover:text-purple-500 border-b-4 border-white hover:border-solid  hover:border-indigo-500">
+                  <FaUser className="inline-block align-baseline" />
                   <Link
                     to="/users"
                     className="text-black text-xl hover:text-purple-500 font-bold p-3"
@@ -67,6 +90,7 @@ class Navbar extends Component {
                   </Link>
                 </li>
                 <li className="mr-2 p-2 hover:text-purple-500 border-b-4 border-white hover:border-solid  hover:border-indigo-500">
+                  <MdSecurity className="inline-block align-baseline" />
                   <Link
                     to="/roles"
                     className="text-black text-xl hover:text-purple-500 font-bold p-3"

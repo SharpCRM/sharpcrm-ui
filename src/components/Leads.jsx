@@ -52,8 +52,13 @@ class Leads extends Component {
     return (
       <div className="mr-6 p-2">
         <div className="flex w-full">
-          <div className="m-5  flex w-full h-12 rounded-md bg-white shadow-md">
-            <Link to="newlead">Add Lead</Link>
+          <div className="m-5 p-2 flex w-full h-14 rounded-md bg-white shadow-md">
+            <Link
+              to="newlead"
+              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            >
+              Add New Lead
+            </Link>
           </div>
         </div>
         <h2>Total count of Leads: {data.length}</h2>

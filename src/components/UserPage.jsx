@@ -16,7 +16,7 @@ const UserPage = () => {
         </Link>
       </div>
       <div className="m-5 w-1/4 rounded-md bg-white shadow-md ">
-        <div className="bg-pink-400 ">
+        <div className="">
           <h1>Name: JAMES, BOND</h1>
         </div>
         <h1>Username: JB007</h1>

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import csc from "country-state-city";
 
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+import Select from "react-select";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
+const listCountries = csc.getAllCountries();
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -27,7 +32,17 @@ const initialValues = {
 };
 
 const onSubmit = values => {
-  console.log(values);
+  axios
+    .post("http://localhost:8080/api/addLead", values)
+    .then(res => {
+      console.log(res);
+      toast.success(
+        "New Lead with ID: " + res.data.id + "  was created successfully !"
+      );
+    })
+    .catch(error => {
+      toast.error("System error occurred while adding New Lead");
+    });
 };
 
 const validate = values => {
@@ -35,6 +50,21 @@ const validate = values => {
 
   if (!values.firstName) {
     errors.firstName = "Required";
+  }
+
+  if (!values.lastName) {
+    errors.lastName = "Required";
+  }
+
+  if (!values.businessEmail) {
+    errors.businessEmail = "Required";
+  }
+
+  if (!values.mobileNumber) {
+    errors.mobileNumber = "Required";
+  }
+  if (!values.country) {
+    errors.country = "Required";
   }
 
   return errors;
@@ -47,7 +77,7 @@ function AddNewLead() {
     validate
   });
 
-  console.log("Visited fields", formik.touched);
+  console.log("Visited fields", formik.values);
   return (
     <div>
       <h1> This is Add new lead page</h1>
@@ -72,7 +102,7 @@ function AddNewLead() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.firstName}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               />
               {formik.errors.firstName ? (
                 <span className="text-red-700">{formik.errors.firstName}</span>
@@ -91,11 +121,15 @@ function AddNewLead() {
                 id="lastName"
                 placeholder="Enter Last Name"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.lastName}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 //   value={lastName}
               />
+              {formik.errors.lastName ? (
+                <span className="text-red-700">{formik.errors.lastName}</span>
+              ) : null}
             </div>
 
             <div className="w-full md:w-1/3 px-3">
@@ -111,10 +145,16 @@ function AddNewLead() {
                 id="businessEmail"
                 placeholder="Enter Business email"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.businessEmail}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 //   value={businessEmail}
               />
+              {formik.errors.businessEmail ? (
+                <span className="text-red-700">
+                  {formik.errors.businessEmail}
+                </span>
+              ) : null}
             </div>
             <div className="w-full md:w-1/3 px-3">
               <label
@@ -148,9 +188,15 @@ function AddNewLead() {
                 placeholder="Enter Mobile Number"
                 onChange={formik.handleChange}
                 value={formik.values.mobileNumber}
+                onBlur={formik.handleBlur}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 //   value={mobileNumber}
               />
+              {formik.errors.mobileNumber ? (
+                <span className="text-red-700">
+                  {formik.errors.mobileNumber}
+                </span>
+              ) : null}
             </div>
           </div>
           <div className="flex flex-wrap -mx=3 mb-6">
@@ -169,10 +215,14 @@ function AddNewLead() {
                   name="country"
                   id="country"
                   placeholder="Enter Country"
-                  onChange={formik.handleChange}
                   value={formik.values.country}
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 />
+                {formik.errors.country ? (
+                  <span className="text-red-700">{formik.errors.country}</span>
+                ) : null}
               </div>
               <div className="w-full md:w-1/3 px-3">
                 <label

@@ -14,13 +14,15 @@ import Deals from "./components/Deals";
 import UserPage from "./components/UserPage";
 import DataPage from "./components/DataPage";
 import RolePage from "./components/RolePage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 class App extends Component {
   render() {
     return (
       <div>
         <Navbar />
-
+        <ToastContainer />
         <Switch>
           <Route path="/login">
             <Login />
